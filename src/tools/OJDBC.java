@@ -1,0 +1,48 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tools;
+
+import daos.RegionDAO;
+import idaos.IRegionDAO;
+import models.Region;
+
+/**
+ *
+ * @author Okala
+ */
+public class OJDBC {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        DBConnection connection = new DBConnection();
+        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+        
+        //Insert
+//        Region region = new Region(111, "NamaSaya");
+//        System.out.println(irdao.insert(region));
+
+        //View
+//        for (Region region : irdao.getAll()) {
+//            System.out.println(region.getId());
+//            System.out.println(region.getName());
+//        }
+//        
+//        for (Region region : irdao.getById(1)) {
+//            System.out.println(region.getId());
+//            System.out.println(region.getName());
+//        }
+
+        //Update
+//        Region region = new Region(111, "Oka Lanang Akbar");
+//        System.out.println(irdao.update(region));
+
+        //Delete
+        System.out.println(irdao.delete(111));
+    }
+}

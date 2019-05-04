@@ -88,7 +88,7 @@ public class RegionDAO implements IRegionDAO {
     @Override
     public boolean insert(Region r) {
         boolean result = false;
-        String query = "INSERT INTO REGIONS(region_id, region_name) VALUES (?,?)";
+        String query = "INSERT INTO REGIONS(region_id, region_name) VALUES ((?),(?))";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, r.getId());

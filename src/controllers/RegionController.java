@@ -63,11 +63,11 @@ public class RegionController implements IRegionController {
 
     @Override
     public String delete(String id) {
-        String result = "";
+        String result = "Maaf data gagal dihapus";
         if (irdao.delete(Integer.parseInt(id))) {
             result = "Data berhasil dihapus";
         } else {
-            result = "Maaf data gagal dihapus";
+            
         }
         return result;
     }

@@ -5,6 +5,10 @@
  */
 package views;
 
+import controllers.RegionController;
+import icontrollers.IRegionController;
+import tools.DBConnection;
+
 /**
  *
  * @author Okala
@@ -146,7 +150,9 @@ public class JIRegionView extends javax.swing.JInternalFrame {
     
     private void btnInsertRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertRegionActionPerformed
         // TODO add your handling code here:
-        System.out.println("Asrul Insert");
+        DBConnection connection = new DBConnection();
+        IRegionController irc = new RegionController(connection.getConnection());
+        System.out.println(irc.insert(txtRegionId.getText(), txtRegionName.getText()));
     }//GEN-LAST:event_btnInsertRegionActionPerformed
 
 

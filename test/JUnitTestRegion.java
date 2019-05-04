@@ -5,7 +5,9 @@
  */
 
 import controllers.RegionController;
+import daos.RegionDAO;
 import icontrollers.IRegionController;
+import idaos.IRegionDAO;
 import java.util.List;
 import org.junit.Test;
 import tools.DBConnection;
@@ -37,7 +39,7 @@ public class JUnitTestRegion {
      
      public void testSearch() {
          List<Region> act3;
-        act3 = irc.search("1");
+         act3 = irc.search("1");
          Assert.assertNotNull(act3);
      }
      

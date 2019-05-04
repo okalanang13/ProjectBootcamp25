@@ -57,6 +57,11 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         jLabel4.setText("Name");
 
         btnInsertRegion.setText("insert");
+        btnInsertRegion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertRegionActionPerformed(evt);
+            }
+        });
 
         btnUpdateRegion.setText("update");
 
@@ -138,6 +143,10 @@ public class JIRegionView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnInsertRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertRegionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInsertRegionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

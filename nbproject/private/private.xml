@@ -4,8 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/NetBeansProject/OJDBC/src/tools/OJDBC.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/views/JIRegionView.java</file>
             <file>file:/F:/NetBeansProject/OJDBC/src/daos/RegionDAO.java</file>
             <file>file:/F:/NetBeansProject/OJDBC/src/controllers/RegionController.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/views/MainFrame.java</file>
         </group>
     </open-files>
 </project-private>

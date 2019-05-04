@@ -23,8 +23,11 @@ public class OJDBC {
         DBConnection connection = new DBConnection();
         IRegionDAO irdao = new RegionDAO(connection.getConnection());
         
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
+        //Check Connection
+//        System.out.println(connection.getConnection());
+        
+//        MainFrame mainFrame = new MainFrame();
+//        mainFrame.setVisible(true);
         
         //Insert
 //        Region region = new Region(111, "NamaSaya");
@@ -47,5 +50,8 @@ public class OJDBC {
 
         //Delete
 //        System.out.println(irdao.delete(111));
+        
+        //Search
+//        System.out.println(irdao.search("eu"));
     }
 }

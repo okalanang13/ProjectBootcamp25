@@ -53,7 +53,7 @@ public class OJDBC {
 //        System.out.println(irdao.update(region));
 
         //Delete
-//        System.out.println(irdao.delete(111));
+        System.out.println(icr.delete("111"));
         
         //Search
 //        System.out.println(irdao.search("eu"));

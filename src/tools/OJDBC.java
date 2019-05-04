@@ -7,7 +7,6 @@ package tools;
 
 import daos.RegionDAO;
 import idaos.IRegionDAO;
-import models.Region;
 import views.MainFrame;
 
 /**
@@ -25,6 +24,7 @@ public class OJDBC {
         IRegionDAO irdao = new RegionDAO(connection.getConnection());
         
         MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
         
         //Insert
 //        Region region = new Region(111, "NamaSaya");

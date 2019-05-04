@@ -24,13 +24,13 @@ public class OJDBC {
         // TODO code application logic here
         DBConnection connection = new DBConnection();
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
-//        IRegionController icr = new RegionController(connection.getConnection());
+        IRegionController icr = new RegionController(connection.getConnection());
         
         //Check Connection
 //        System.out.println(connection.getConnection());
         
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
+//        MainFrame mainFrame = new MainFrame();
+//        mainFrame.setVisible(true);
         
         //DAO
         //Insert

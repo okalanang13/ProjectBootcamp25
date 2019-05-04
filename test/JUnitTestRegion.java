@@ -5,9 +5,7 @@
  */
 
 import controllers.RegionController;
-import daos.RegionDAO;
 import icontrollers.IRegionController;
-import idaos.IRegionDAO;
 import java.util.List;
 import org.junit.Test;
 import tools.DBConnection;
@@ -28,35 +26,42 @@ public class JUnitTestRegion {
 
      @Test
      public void testGetAll(){
-         List<Region> act = irc.getAll();
-         Assert.assertNotNull(act);
+         List<Region> act1 = irc.getAll();
+         System.out.println(act1);
+         Assert.assertNotNull(act1);
      }
      
+     @Test
      public void testGetById() {
          List<Region> act2 = irc.getById("1");
+         System.out.println(act2);
          Assert.assertNotNull(act2);
      }
      
+     @Test
      public void testSearch() {
-         List<Region> act3;
-         act3 = irc.search("1");
+         List<Region> act3 = irc.search("1");
+         System.out.println(act3);
          Assert.assertNotNull(act3);
      }
      
+     @Test
      public void testInsert(){
          irc.insert("111", "NamaSaya");
-         List<Region> regions = irc.getById("111");
-         Assert.assertEquals("111", regions.get(0).getId());
-         Assert.assertEquals("NamaSaya", regions.get(0).getName());
+         List<Region> region = irc.getById("111");
+         Assert.assertEquals(111, region.get(0).getId());
+         Assert.assertEquals("NamaSaya", region.get(0).getName());
      }
 
+     @Test
      public void testUpdate(){
          irc.insert("111", "NamaSayaIni");
-         List<Region> regions = irc.getById("111");
-         Assert.assertEquals("111", regions.get(0).getId());
-         Assert.assertEquals("NamaSaya", regions.get(0).getName());
+         List<Region> region = irc.getById("111");
+         Assert.assertEquals(111, region.get(0).getId());
+         Assert.assertEquals("NamaSaya", region.get(0).getName());
      }
      
+     @Test
      public void testDelete(){
          irc.delete("111");
          Assert.assertNotNull(irc.getById("111"));

@@ -43,24 +43,20 @@ public class RegionController implements IRegionController {
 
     @Override
     public String insert(String id, String name) {
-        String result = "";
+        String result = "Maaf data gagal disimpan";
         Region region = new Region(Integer.parseInt(id), name);
         if (irdao.insert(region)) {
             result = "Data berhasil disimpan";
-        } else {
-            result = "Maaf data gagal disimpan";
         }
         return result;
     }
 
     @Override
     public String update(String id, String name) {
-        String result = "";
+        String result = "Maaf data gagal disimpan";
         Region region = new Region(Integer.parseInt(id), name);
         if (irdao.update(region)) {
             result = "Data berhasil diupdate";
-        } else {
-            result = "Maaf data gagal diupdate";
         }
         return result;
     }

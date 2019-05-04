@@ -143,9 +143,10 @@ public class JIRegionView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnInsertRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertRegionActionPerformed
         // TODO add your handling code here:
+        System.out.println("Asrul Insert");
     }//GEN-LAST:event_btnInsertRegionActionPerformed
 
 

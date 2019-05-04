@@ -5,7 +5,9 @@
  */
 package tools;
 
+import controllers.RegionController;
 import daos.RegionDAO;
+import icontrollers.IRegionController;
 import idaos.IRegionDAO;
 import views.MainFrame;
 
@@ -21,14 +23,16 @@ public class OJDBC {
     public static void main(String[] args) {
         // TODO code application logic here
         DBConnection connection = new DBConnection();
-        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+//        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+//        IRegionController icr = new RegionController(connection.getConnection());
         
         //Check Connection
 //        System.out.println(connection.getConnection());
         
-//        MainFrame mainFrame = new MainFrame();
-//        mainFrame.setVisible(true);
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
         
+        //DAO
         //Insert
 //        Region region = new Region(111, "NamaSaya");
 //        System.out.println(irdao.insert(region));

@@ -8,6 +8,7 @@ package tools;
 import daos.RegionDAO;
 import idaos.IRegionDAO;
 import models.Region;
+import views.MainFrame;
 
 /**
  *
@@ -22,6 +23,8 @@ public class OJDBC {
         // TODO code application logic here
         DBConnection connection = new DBConnection();
         IRegionDAO irdao = new RegionDAO(connection.getConnection());
+        
+        MainFrame mainFrame = new MainFrame();
         
         //Insert
 //        Region region = new Region(111, "NamaSaya");
@@ -43,6 +46,6 @@ public class OJDBC {
 //        System.out.println(irdao.update(region));
 
         //Delete
-        System.out.println(irdao.delete(111));
+//        System.out.println(irdao.delete(111));
     }
 }

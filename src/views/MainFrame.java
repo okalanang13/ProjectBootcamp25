@@ -60,6 +60,11 @@ public class MainFrame extends javax.swing.JFrame {
         menuEmployee.add(menuRegion);
 
         jMenuItem2.setText("Employee");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menuEmployee.add(jMenuItem2);
 
         jMenuBar1.add(menuEmployee);
@@ -86,6 +91,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.dekstopPane.add(regionView);
         regionView.show();
     }//GEN-LAST:event_menuRegionActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JIEmployeeView employeeView = new JIEmployeeView();
+        this.dekstopPane.add(employeeView);
+        employeeView.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

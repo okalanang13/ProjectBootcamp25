@@ -67,7 +67,7 @@ public class RegionDAO implements IRegionDAO {
     @Override
     public List<Region> search(String key) {
                 List<Region> listRegion = new ArrayList<Region>();
-        String query = "SELECT * FROM REGIONS WHERE region_id LIKE (?) OR region_name LIKE (?) ORDER BY region_id";
+        String query = "SELECT * FROM REGIONS WHERE LOWER(region_id) LIKE (?) OR LOWER(region_name) LIKE (?) ORDER BY region_id";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, "%"+key+"%");

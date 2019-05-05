@@ -15,7 +15,7 @@ import tools.DBConnection;
  *
  * @author Okala
  */
-public class JIRegionView extends javax.swing.JInternalFrame {
+public final class JIRegionView extends javax.swing.JInternalFrame {
 
     DBConnection connection = new DBConnection();
     IRegionController irc = new RegionController(connection.getConnection());
@@ -30,6 +30,8 @@ public class JIRegionView extends javax.swing.JInternalFrame {
     public void resetTextRegion(){
         txtRegionId.setText("");
         txtRegionName.setText("");
+        txtRegionId.setEditable(true);
+        btnInsertRegion.setEnabled(true);
     }
     
     public void showTableRegion(){
@@ -42,10 +44,29 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         }
     }
     
+    public void showTableRegion(String s){
+        DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
+        Object[] row = new Object[2];
+        for (int i = 0; i < irc.search(s).size(); i++) {
+            row[0]=irc.search(s).get(i).getId();
+            row[1]=irc.search(s).get(i).getName();
+            model.addRow(row);
+        }
+    }
+    
     public void updateTableRegion(){
         DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
         model.setRowCount(0);
         showTableRegion();
+    }
+    
+    public void updateTableRegion(String s){
+        DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
+        model.setRowCount(0);
+        if(s == ""){
+            showTableRegion();
+        }
+        showTableRegion(s);
     }
     
     
@@ -106,6 +127,12 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         btnDeleteRegion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteRegionActionPerformed(evt);
+            }
+        });
+
+        txtRegionSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRegionSearchKeyTyped(evt);
             }
         });
 
@@ -214,7 +241,7 @@ public class JIRegionView extends javax.swing.JInternalFrame {
     
     private void btnInsertRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertRegionActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan insert?", "Confirm Insert", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(confirm==JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, irc.insert(txtRegionId.getText(), txtRegionName.getText()));
             updateTableRegion();
@@ -224,14 +251,22 @@ public class JIRegionView extends javax.swing.JInternalFrame {
 
     private void btnUpdateRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRegionActionPerformed
         // TODO add your handling code here:
-        System.out.println(irc.update(txtRegionId.getText(), txtRegionName.getText()));
-        resetTextRegion();
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan update?", "Confirm Update", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(confirm==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, irc.update(txtRegionId.getText(), txtRegionName.getText()));
+            updateTableRegion();
+            resetTextRegion();
+        }
     }//GEN-LAST:event_btnUpdateRegionActionPerformed
 
     private void btnDeleteRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteRegionActionPerformed
         // TODO add your handling code here:
-        System.out.println(irc.delete(txtRegionId.getText()));
-        resetTextRegion();
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan delete?", "Confirm Update", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(confirm==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, irc.delete(txtRegionId.getText()));
+            updateTableRegion();
+            resetTextRegion();
+        }
     }//GEN-LAST:event_btnDeleteRegionActionPerformed
 
     private void tableRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRegionMouseClicked
@@ -240,16 +275,20 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         int SelectedRowIndex = tableRegion.getSelectedRow();
         
         txtRegionId.setEditable(false);
+        btnInsertRegion.setEnabled(false);
         txtRegionId.setText(model.getValueAt(SelectedRowIndex, 0).toString());
         txtRegionName.setText(model.getValueAt(SelectedRowIndex, 1).toString());
     }//GEN-LAST:event_tableRegionMouseClicked
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-        txtRegionId.setEditable(true);
         resetTextRegion();
-        
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtRegionSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegionSearchKeyTyped
+        // TODO add your handling code here:
+        updateTableRegion(txtRegionSearch.getText());
+    }//GEN-LAST:event_txtRegionSearchKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

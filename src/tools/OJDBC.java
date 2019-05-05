@@ -22,15 +22,15 @@ public class OJDBC {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DBConnection connection = new DBConnection();
+//        DBConnection connection = new DBConnection();
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
-        IRegionController icr = new RegionController(connection.getConnection());
+//        IRegionController icr = new RegionController(connection.getConnection());
         
         //Check Connection
 //        System.out.println(connection.getConnection());
         
-//        MainFrame mainFrame = new MainFrame();
-//        mainFrame.setVisible(true);
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
         
         //DAO
         //Insert
@@ -53,7 +53,7 @@ public class OJDBC {
 //        System.out.println(irdao.update(region));
 
         //Delete
-        System.out.println(icr.delete("111"));
+//        System.out.println(icr.delete("111"));
         
         //Search
 //        System.out.println(irdao.search("eu"));

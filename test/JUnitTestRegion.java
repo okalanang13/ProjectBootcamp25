@@ -61,6 +61,6 @@ public class JUnitTestRegion {
      @Test
      public void testDelete(){
          irc.delete("111");
-         Assert.assertEquals("[]", irc.getById("1")+"");
+         Assert.assertEquals("[]", irc.getById("111")+"");
      }
 }

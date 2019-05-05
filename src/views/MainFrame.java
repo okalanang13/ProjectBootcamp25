@@ -27,38 +27,42 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        dekstopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuEmployee = new javax.swing.JMenu();
+        menuRegion = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Database Management");
         setName("mainFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(900, 550));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout dekstopPaneLayout = new javax.swing.GroupLayout(dekstopPane);
+        dekstopPane.setLayout(dekstopPaneLayout);
+        dekstopPaneLayout.setHorizontalGroup(
+            dekstopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 901, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        dekstopPaneLayout.setVerticalGroup(
+            dekstopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 518, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Menu");
+        menuEmployee.setText("Menu");
 
-        jMenuItem1.setText("Region");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuRegion.setText("Region");
+        menuRegion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuRegionActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuEmployee.add(menuRegion);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem2.setText("Employee");
+        menuEmployee.add(jMenuItem2);
+
+        jMenuBar1.add(menuEmployee);
 
         setJMenuBar(jMenuBar1);
 
@@ -66,22 +70,22 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(dekstopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(dekstopPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegionActionPerformed
         // TODO add your handling code here:
         JIRegionView regionView = new JIRegionView();
-        this.jDesktopPane1.add(regionView);
+        this.dekstopPane.add(regionView);
         regionView.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuRegionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,9 +126,10 @@ public class MainFrame extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JDesktopPane dekstopPane;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu menuEmployee;
+    private javax.swing.JMenuItem menuRegion;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,7 +63,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
     public void updateTableRegion(String s){
         DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
         model.setRowCount(0);
-        if(s == ""){
+        if(s == null){
             showTableRegion();
         }
         showTableRegion(s);

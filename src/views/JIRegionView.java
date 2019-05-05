@@ -24,7 +24,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
      */
     public JIRegionView() {
         initComponents();
-        showTableRegion();
+//        showTableRegion();
     }
    
     public void resetTextRegion(){
@@ -42,6 +42,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
             row[1]=irc.getAll().get(i).getName();
             model.addRow(row);
         }
+        
     }
     
     public void showTableRegion(String s){

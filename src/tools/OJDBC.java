@@ -9,6 +9,13 @@ package tools;
 //import daos.RegionDAO;
 //import icontrollers.IRegionController;
 //import idaos.IRegionDAO;
+//import daos.EmployeeDAO;
+//import idaos.IEmployeeDAO;
+//import java.sql.Timestamp;
+import java.text.ParseException;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import models.Employee;
 import views.MainFrame;
 
 /**
@@ -20,10 +27,11 @@ public class OJDBC {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO code application logic here
 //        DBConnection connection = new DBConnection();
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+//        IEmployeeDAO iedao = new EmployeeDAO(connection.getConnection());
 //        IRegionController icr = new RegionController(connection.getConnection());
         
         //Check Connection
@@ -36,6 +44,12 @@ public class OJDBC {
         //Insert
 //        Region region = new Region(111, "NamaSaya");
 //        System.out.println(irdao.insert(region));
+//        String myDate = "15/02/2019";
+//        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date = df.parse(myDate);
+//        
+//        Employee employee = new Employee(208, "Fredi", "Margianto", "fredi@gmail.com", "08272", new Date(date.getTime()), "PR_REP", 9000, 0.01, 101, 110);
+//        System.out.println(iedao.insert(employee));
 
         //View
 //        for (Region region : irdao.getAll()) {

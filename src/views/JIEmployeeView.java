@@ -5,18 +5,51 @@
  */
 package views;
 
+import controllers.EmployeeController;
+import icontrollers.IEmployeeController;
+import javax.swing.table.DefaultTableModel;
+import tools.DBConnection;
+
 /**
  *
  * @author Okala
  */
 public class JIEmployeeView extends javax.swing.JInternalFrame {
 
+    DBConnection connection = new DBConnection();
+    IEmployeeController iec = new EmployeeController(connection.getConnection());
+    
     /**
      * Creates new form JIEmployeeView
      */
     public JIEmployeeView() {
         initComponents();
+        showTableEmployee();
     }
+    
+    public void showTableEmployee(){
+        DefaultTableModel model = (DefaultTableModel)tableEmployee.getModel();
+        Object[] row = new Object[11];
+        for (int i = 0; i < iec.getAll().size(); i++) {
+            row[0]=iec.getAll().get(i).getId();
+            row[1]=iec.getAll().get(i).getFirstName();
+            row[2]=iec.getAll().get(i).getLastName();
+            row[3]=iec.getAll().get(i).getEmail();
+            row[4]=iec.getAll().get(i).getPhoneNumber();
+            row[5]=iec.getAll().get(i).getHireDate();
+            row[6]=iec.getAll().get(i).getJob();
+            row[7]=iec.getAll().get(i).getSalary();
+            row[8]=iec.getAll().get(i).getCommissionPct();
+            row[9]=iec.getAll().get(i).getManager();
+            row[10]=iec.getAll().get(i).getDepartment();
+            model.addRow(row);
+        }
+    }
+    
+    public void resetTextEmployee(){
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,6 +61,29 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtEmployeeID = new javax.swing.JTextField();
+        txtEmployeeFName = new javax.swing.JTextField();
+        txtEmployeeLName = new javax.swing.JTextField();
+        txtEmployeeEmail = new javax.swing.JTextField();
+        txtEmployeePhone = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableEmployee = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        cmbEmployeeJob = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        txtEmployeeSearch = new javax.swing.JTextField();
+        cmbEmployeeSearch = new javax.swing.JComboBox<>();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
 
         setClosable(true);
         setIconifiable(true);
@@ -35,21 +91,159 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Employee Info");
 
+        jButton1.setText("Clear");
+
+        jButton2.setText("Insert");
+
+        jButton3.setText("Update");
+
+        jButton4.setText("Delete");
+
+        jLabel2.setText("ID");
+
+        jLabel3.setText("First Name");
+
+        jLabel4.setText("Last Name");
+
+        jLabel5.setText("Email");
+
+        jLabel6.setText("Phone");
+
+        jLabel7.setText("Hire Date");
+
+        tableEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "First Name", "Last Name", "Email", "Phone", "Hire Date", "Job", "Salary", "Commission_pct", "Manager", "Department"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableEmployee);
+        if (tableEmployee.getColumnModel().getColumnCount() > 0) {
+            tableEmployee.getColumnModel().getColumn(0).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(1).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(2).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(3).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(4).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(5).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(6).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(7).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(8).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(9).setResizable(false);
+            tableEmployee.getColumnModel().getColumn(10).setResizable(false);
+        }
+
+        jLabel8.setText("Job");
+
+        jLabel9.setText("Search");
+
+        cmbEmployeeSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(577, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(62, 62, 62)
+                            .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addGap(12, 12, 12)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEmployeeLName)
+                                .addComponent(txtEmployeeFName)
+                                .addComponent(txtEmployeeEmail)
+                                .addComponent(txtEmployeePhone)
+                                .addComponent(dateChooserCombo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(46, 46, 46)
+                        .addComponent(cmbEmployeeJob, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel9)
+                    .addComponent(txtEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmployeeFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmployeeLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jButton4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmployeePhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel7)
+                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbEmployeeJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(0, 113, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -57,6 +251,29 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbEmployeeJob;
+    private javax.swing.JComboBox<String> cmbEmployeeSearch;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableEmployee;
+    private javax.swing.JTextField txtEmployeeEmail;
+    private javax.swing.JTextField txtEmployeeFName;
+    private javax.swing.JTextField txtEmployeeID;
+    private javax.swing.JTextField txtEmployeeLName;
+    private javax.swing.JTextField txtEmployeePhone;
+    private javax.swing.JTextField txtEmployeeSearch;
     // End of variables declaration//GEN-END:variables
 }

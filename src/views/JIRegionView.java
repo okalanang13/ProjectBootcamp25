@@ -7,8 +7,10 @@ package views;
 
 import controllers.RegionController;
 import icontrollers.IRegionController;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import models.Region;
 import tools.DBConnection;
 
 /**
@@ -24,7 +26,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
      */
     public JIRegionView() {
         initComponents();
-//        showTableRegion();
+        showTableRegion("");
     }
    
     public void resetTextRegion(){
@@ -34,40 +36,25 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
         btnInsertRegion.setEnabled(true);
     }
     
-    public void showTableRegion(){
+    public void showTableRegion(String key){
         DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
-        Object[] row = new Object[2];
-        for (int i = 0; i < irc.getAll().size(); i++) {
-            row[0]=irc.getAll().get(i).getId();
-            row[1]=irc.getAll().get(i).getName();
-            model.addRow(row);
+        List<Region> regions = irc.search(key);
+        Object[] row = new Object[3];
+        if(key.isEmpty()){
+            regions = irc.getAll();
         }
-        
-    }
-    
-    public void showTableRegion(String s){
-        DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
-        Object[] row = new Object[2];
-        for (int i = 0; i < irc.search(s).size(); i++) {
-            row[0]=irc.search(s).get(i).getId();
-            row[1]=irc.search(s).get(i).getName();
+        for (int i = 0; i < regions.size(); i++) {
+            row[0]=i+1;
+            row[1]=regions.get(i).getId();
+            row[2]=regions.get(i).getName();
             model.addRow(row);
         }
     }
     
-    public void updateTableRegion(){
+    public void updateTableRegion(String key){
         DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
         model.setRowCount(0);
-        showTableRegion();
-    }
-    
-    public void updateTableRegion(String s){
-        DefaultTableModel model = (DefaultTableModel)tableRegion.getModel();
-        model.setRowCount(0);
-        if(s == null){
-            showTableRegion();
-        }
-        showTableRegion(s);
+        showTableRegion(key);
     }
     
     
@@ -245,7 +232,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan insert?", "Confirm Insert", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(confirm==JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, irc.insert(txtRegionId.getText(), txtRegionName.getText()));
-            updateTableRegion();
+            updateTableRegion("");
             resetTextRegion();
         }
     }//GEN-LAST:event_btnInsertRegionActionPerformed
@@ -255,7 +242,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan update?", "Confirm Update", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(confirm==JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, irc.update(txtRegionId.getText(), txtRegionName.getText()));
-            updateTableRegion();
+            updateTableRegion("");
             resetTextRegion();
         }
     }//GEN-LAST:event_btnUpdateRegionActionPerformed
@@ -265,7 +252,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan delete?", "Confirm Update", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(confirm==JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, irc.delete(txtRegionId.getText()));
-            updateTableRegion();
+            updateTableRegion("");
             resetTextRegion();
         }
     }//GEN-LAST:event_btnDeleteRegionActionPerformed

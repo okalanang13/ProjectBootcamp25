@@ -14,6 +14,7 @@ import models.Employee;
  * @author Relion31
  */
 public interface IEmployeeController {
+     
     public List<Employee> getAll();
 
     public List<Employee> getById(String id);

@@ -15,15 +15,9 @@ import models.Employee;
  */
 public interface IEmployeeDAO {
     
-    public List<Employee> getAll();
+    public List<Employee> getData(Object key, boolean isGetById);
 
-    public List<Employee> getById(int id);
-
-    public List<Employee> search(String key);
-
-    public boolean insert(Employee E);
-
-    public boolean update(Employee E);
+    public boolean save(Employee e);
 
     public boolean delete(int id);
 }

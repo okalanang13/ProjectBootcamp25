@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package idaos;
+package icontrollers;
 
 import java.util.List;
-import models.Region;
+import models.SessLogin;
 
 /**
  *
  * @author Okala
  */
-public interface IRegionDAO {
-
-    public List<Region> getData(Object key, boolean isGetById);
-
-    public boolean save(Region r);
-
-    public boolean delete(int id);
+public interface ISessLoginController  {
+    
+    public int getById(String email, String password);
+    
+    public boolean login(String email, String password);
+    
 }

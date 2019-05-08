@@ -4,10 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/NetBeansProject/OJDBC/src/daos/EmployeeDAO.java</file>
-            <file>file:/F:/NetBeansProject/OJDBC/src/models/Employee.java</file>
-            <file>file:/F:/NetBeansProject/OJDBC/src/tools/OJDBC.java</file>
-            <file>file:/F:/NetBeansProject/OJDBC/src/views/JIEmployeeView.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/idaos/IEmployeeDAO.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/controllers/SessLoginController.java</file>
             <file>file:/F:/NetBeansProject/OJDBC/src/views/JIRegionView.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/daos/RegionDAO.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/controllers/RegionController.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/icontrollers/IEmployeeController.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/icontrollers/ISessLoginController.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/icontrollers/IRegionController.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/tools/OJDBC.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/models/SessLogin.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/controllers/EmployeeController.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/idaos/ISessLoginDAO.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/views/JIEmployeeView.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/views/LoginView.java</file>
+            <file>file:/F:/NetBeansProject/OJDBC/src/daos/SessLoginDAO.java</file>
         </group>
     </open-files>
 </project-private>

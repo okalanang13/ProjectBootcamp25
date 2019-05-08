@@ -7,14 +7,16 @@ package views;
 
 import controllers.EmployeeController;
 import icontrollers.IEmployeeController;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import models.Employee;
 import tools.DBConnection;
 
 /**
  *
  * @author Okala
  */
-public class JIEmployeeView extends javax.swing.JInternalFrame {
+public final class JIEmployeeView extends javax.swing.JInternalFrame {
 
     DBConnection connection = new DBConnection();
     IEmployeeController iec = new EmployeeController(connection.getConnection());
@@ -24,30 +26,34 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
      */
     public JIEmployeeView() {
         initComponents();
-        showTableEmployee();
+        showTableEmployee("");
     }
     
-    public void showTableEmployee(){
+    public void showTableEmployee(String s){
         DefaultTableModel model = (DefaultTableModel)tableEmployee.getModel();
-        Object[] row = new Object[11];
-        for (int i = 0; i < iec.getAll().size(); i++) {
-            row[0]=iec.getAll().get(i).getId();
-            row[1]=iec.getAll().get(i).getFirstName();
-            row[2]=iec.getAll().get(i).getLastName();
-            row[3]=iec.getAll().get(i).getEmail();
-            row[4]=iec.getAll().get(i).getPhoneNumber();
-            row[5]=iec.getAll().get(i).getHireDate();
-            row[6]=iec.getAll().get(i).getJob();
-            row[7]=iec.getAll().get(i).getSalary();
-            row[8]=iec.getAll().get(i).getCommissionPct();
-            row[9]=iec.getAll().get(i).getManager();
-            row[10]=iec.getAll().get(i).getDepartment();
+        List<Employee> employees = (s.isEmpty())
+                ?iec.search(s)
+                :iec.getAll();
+        Object[] row = new Object[12];
+        for (int i = 0; i < employees.size(); i++) {
+            row[0]=i+1;
+            row[1]=employees.get(i).getId();
+            row[2]=employees.get(i).getFirstName();
+            row[3]=employees.get(i).getLastName();
+            row[4]=employees.get(i).getEmail();
+            row[5]=employees.get(i).getPhoneNumber();
+            row[6]=employees.get(i).getHireDate();
+            row[7]=employees.get(i).getJob();
+            row[8]=employees.get(i).getSalary();
+            row[9]=employees.get(i).getCommissionPct();
+            row[10]=employees.get(i).getManager();
+            row[11]=employees.get(i).getDepartment();
             model.addRow(row);
         }
     }
     
     public void resetTextEmployee(){
-        
+        txtEmployeeID.setText("");
     }
     
 
@@ -80,10 +86,11 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
         tableEmployee = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         cmbEmployeeJob = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
         txtEmployeeSearch = new javax.swing.JTextField();
         cmbEmployeeSearch = new javax.swing.JComboBox<>();
         dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -144,9 +151,11 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Job");
 
-        jLabel9.setText("Search");
+        cmbEmployeeSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Search", "Category" }));
 
-        cmbEmployeeSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel10.setText("jLabel10");
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,19 +191,21 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
                                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(46, 46, 46)
-                        .addComponent(cmbEmployeeJob, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField1))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addGap(46, 46, 46)
+                            .addComponent(cmbEmployeeJob, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
                         .addComponent(cmbEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -204,7 +215,6 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel9)
                     .addComponent(txtEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbEmployeeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -237,12 +247,15 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel7)
                             .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbEmployeeJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(0, 113, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -259,6 +272,7 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -266,8 +280,8 @@ public class JIEmployeeView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableEmployee;
     private javax.swing.JTextField txtEmployeeEmail;
     private javax.swing.JTextField txtEmployeeFName;

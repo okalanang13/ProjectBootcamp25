@@ -11,8 +11,12 @@ import java.sql.Connection;
 import java.util.List;
 import models.Employee;
 import icontrollers.IEmployeeController;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,8 +24,7 @@ import java.util.Date;
  */
 public class EmployeeController implements IEmployeeController{
 
-    Date d = new Date();
-    private IEmployeeDAO iedao;
+    private final IEmployeeDAO iedao;
     
     public EmployeeController(Connection connection){
         iedao = new EmployeeDAO(connection);
@@ -29,24 +32,31 @@ public class EmployeeController implements IEmployeeController{
     
     @Override
     public List<Employee> getAll() {
-        return iedao.getAll();
+        return iedao.getData("", false);
     }
 
     @Override
-    public List<Employee> getById(String id) {
-       return iedao.getById(Integer.parseInt(id));
+    public List<Employee> getById(String key) {
+       return iedao.getData(key, true);
     }
 
     @Override
     public List<Employee> search(String key) {
-       return iedao.search(key);
+       return iedao.getData(key, false);
     }
 
     @Override
     public String insert(String id, String first_name, String last_name, String email, String phone_number, String hire_date, String job, String salary, String commission_pct, String manager, String department) {
         String result = "Maaf data gagal disimpan";
-        Employee employee = new Employee(Integer.parseInt(id), first_name, last_name, email, phone_number, d, job, Integer.parseInt(salary), Double.parseDouble(commission_pct), Integer.parseInt(manager), Integer.parseInt(department));
-        if (iedao.insert(employee)) {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = df.parse(hire_date);
+        } catch (ParseException ex) {
+            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Employee employee = new Employee(Integer.parseInt(id), first_name, last_name, email, phone_number, new java.sql.Date(date.getTime()), job, Integer.parseInt(salary), Double.parseDouble(commission_pct), Integer.parseInt(manager), Integer.parseInt(department));
+        if (iedao.save(employee)) {
             result = "Data berhasil disimpan";
         }
         return result;
@@ -55,8 +65,15 @@ public class EmployeeController implements IEmployeeController{
     @Override
     public String update(String id, String first_name, String last_name, String email, String phone_number, String hire_date, String job, String salary, String commission_pct, String manager, String department) {
         String result = "Maaf data gagal disimpan";
-        Employee employee = new Employee(Integer.parseInt(id), first_name, last_name, email, phone_number, d, job, Integer.parseInt(salary), Double.parseDouble(commission_pct), Integer.parseInt(manager), Integer.parseInt(department));
-        if (iedao.update(employee)) {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = df.parse(hire_date);
+        } catch (ParseException ex) {
+            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Employee employee = new Employee(Integer.parseInt(id), first_name, last_name, email, phone_number, new java.sql.Date(date.getTime()), job, Integer.parseInt(salary), Double.parseDouble(commission_pct), Integer.parseInt(manager), Integer.parseInt(department));
+        if (iedao.save(employee)) {
             result = "Data berhasil disimpan";
         }
         return result;

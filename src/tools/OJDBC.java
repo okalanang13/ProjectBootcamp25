@@ -10,11 +10,19 @@ package tools;
 //import icontrollers.IRegionController;
 //import idaos.IRegionDAO;
 //import daos.EmployeeDAO;
+import controllers.EmployeeController;
+import controllers.SessLoginController;
+import icontrollers.IEmployeeController;
+import icontrollers.ISessLoginController;
 //import idaos.IEmployeeDAO;
 //import java.sql.Timestamp;
 import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import models.Employee;
+import views.LoginView;
 //import models.Employee;
 import views.MainFrame;
 
@@ -27,18 +35,35 @@ public class OJDBC {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ParseException {
+    private static void main (String[] args) {
         // TODO code application logic here
-//        DBConnection connection = new DBConnection();
+        DBConnection connection = new DBConnection();
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        IEmployeeDAO iedao = new EmployeeDAO(connection.getConnection());
-//        IRegionController icr = new RegionController(connection.getConnection());
+//        IRegionController irc = new RegionController(connection.getConnection());
+        ISessLoginController islc = new SessLoginController(connection.getConnection());
+
+        System.out.println(islc.getById("okalanang13@gmail.com", "admin"));
+        System.out.println(islc.login("okalanang13@gmail.com", "admin"));
         
         //Check Connection
 //        System.out.println(connection.getConnection());
         
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
+//        Pattern p = Pattern.compile("-");
+//        Matcher m = p.matcher("a123b - test");
+//        System.out.println(m.find());
+//        System.out.println(m.matches());
+//        String myString = "GDSHKG - db";
+//        String newString = myString.substring(0, myString.indexOf("-"));
+//        System.out.println(myString);
+//        System.out.println(newString);
+//        System.out.println(newString.length());
+
+//        MainFrame mainFrame = new MainFrame();
+//        mainFrame.setVisible(true);
+//        LoginView view = new LoginView();
+//        view.setVisible(true);
+
         
         //DAO
         //Insert
@@ -47,6 +72,10 @@ public class OJDBC {
 //        String myDate = "15/02/2019";
 //        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 //        Date date = df.parse(myDate);
+//        System.out.println(date);
+//        System.out.println(date.getTime());
+//        System.out.println(new java.sql.Date(date.getTime()));
+        
 //        
 //        Employee employee = new Employee(208, "Fredi", "Margianto", "fredi@gmail.com", "08272", new Date(date.getTime()), "PR_REP", 9000, 0.01, 101, 110);
 //        System.out.println(iedao.insert(employee));

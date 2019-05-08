@@ -28,24 +28,24 @@ public class RegionController implements IRegionController {
     
     @Override
     public List<Region> getAll() {
-        return irdao.getAll();
+        return irdao.getData("", false);
     }
 
     @Override
     public List<Region> getById(String id) {
-        return irdao.getById(Integer.parseInt(id));
+        return irdao.getData(id, true);
     }
 
     @Override
     public List<Region> search(String key) {
-        return irdao.search(key);
+        return irdao.getData(key, false);
     }
 
     @Override
     public String insert(String id, String name) {
         String result = "Maaf data gagal disimpan";
         Region region = new Region(Integer.parseInt(id), name);
-        if (irdao.insert(region)) {
+        if (irdao.save(region)) {
             result = "Data berhasil disimpan";
         }
         return result;
@@ -55,7 +55,7 @@ public class RegionController implements IRegionController {
     public String update(String id, String name) {
         String result = "Maaf data gagal disimpan";
         Region region = new Region(Integer.parseInt(id), name);
-        if (irdao.update(region)) {
+        if (irdao.save(region)) {
             result = "Data berhasil diupdate";
         }
         return result;

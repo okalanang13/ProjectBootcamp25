@@ -6,17 +6,17 @@
 package idaos;
 
 import java.util.List;
-import models.Region;
+import models.SessLogin;
+
 
 /**
  *
- * @author Okala
+ * @author Relion31
  */
-public interface IRegionDAO {
-
-    public List<Region> getData(Object key, boolean isGetById);
-
-    public boolean save(Region r);
-
-    public boolean delete(int id);
+public interface ISessLoginDAO {
+    
+    public int getData(String email, String password);
+    
+    public boolean login(String email, String password);
+    
 }

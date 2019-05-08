@@ -6,17 +6,17 @@
 package idaos;
 
 import java.util.List;
-import models.Region;
+import models.UserManagement;
 
 /**
  *
  * @author Okala
  */
-public interface IRegionDAO {
-
-    public List<Region> getData(Object key, boolean isGetById);
-
-    public boolean save(Region r);
-
-    public boolean delete(int id);
+public interface IUserManagementDAO {
+    
+    public List<UserManagement> getId(UserManagement um);
+    
+    public boolean register(UserManagement um);
+    
+    public boolean login(UserManagement um);
 }

@@ -40,6 +40,7 @@ public class JUnitTestRegion {
      @Test
      public void testSearch() {
          List<Region> act3 = irc.search("1");
+          Assert.assertNotNull(act3);
      }
      
      @Test

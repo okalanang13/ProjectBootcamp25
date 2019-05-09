@@ -14,9 +14,10 @@ import models.UserManagement;
  */
 public interface IUserManagementDAO {
     
-    public List<UserManagement> getId(UserManagement um);
+    public List<UserManagement> getData(UserManagement um, boolean isGetByUsername);
     
-    public boolean register(UserManagement um);
+    public boolean save(UserManagement um);
     
-    public boolean login(UserManagement um);
+    public boolean delete(int id);
+    
 }

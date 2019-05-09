@@ -5,17 +5,23 @@
  */
 package views;
 
+import models.Session;
+
 /**
  *
  * @author Okala
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
+    String username = Session.getUsername();
+    
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+
+        lblUser.setText(username);
     }
 
     /**
@@ -28,28 +34,49 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         dekstopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuEmployee = new javax.swing.JMenu();
+        menuMangement = new javax.swing.JMenu();
         menuRegion = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuEmployee = new javax.swing.JMenuItem();
+        menuAccount = new javax.swing.JMenu();
+        menuChangePassword = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Database Management");
         setName("mainFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(900, 550));
 
+        jLabel1.setText("User : ");
+
+        lblUser.setText("[Nama User]");
+
+        dekstopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dekstopPane.setLayer(lblUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout dekstopPaneLayout = new javax.swing.GroupLayout(dekstopPane);
         dekstopPane.setLayout(dekstopPaneLayout);
         dekstopPaneLayout.setHorizontalGroup(
             dekstopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 901, Short.MAX_VALUE)
+            .addGroup(dekstopPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblUser)
+                .addContainerGap(789, Short.MAX_VALUE))
         );
         dekstopPaneLayout.setVerticalGroup(
             dekstopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
+            .addGroup(dekstopPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dekstopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblUser))
+                .addContainerGap(493, Short.MAX_VALUE))
         );
 
-        menuEmployee.setText("Menu");
+        menuMangement.setText("Menu");
 
         menuRegion.setText("Region");
         menuRegion.addActionListener(new java.awt.event.ActionListener() {
@@ -57,17 +84,29 @@ public class MainFrame extends javax.swing.JFrame {
                 menuRegionActionPerformed(evt);
             }
         });
-        menuEmployee.add(menuRegion);
+        menuMangement.add(menuRegion);
 
-        jMenuItem2.setText("Employee");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuEmployee.setText("Employee");
+        menuEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuEmployeeActionPerformed(evt);
             }
         });
-        menuEmployee.add(jMenuItem2);
+        menuMangement.add(menuEmployee);
 
-        jMenuBar1.add(menuEmployee);
+        jMenuBar1.add(menuMangement);
+
+        menuAccount.setText("Account");
+
+        menuChangePassword.setText("Change Password");
+        menuChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuChangePasswordActionPerformed(evt);
+            }
+        });
+        menuAccount.add(menuChangePassword);
+
+        jMenuBar1.add(menuAccount);
 
         setJMenuBar(jMenuBar1);
 
@@ -92,12 +131,19 @@ public class MainFrame extends javax.swing.JFrame {
         regionView.show();
     }//GEN-LAST:event_menuRegionActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmployeeActionPerformed
         // TODO add your handling code here:
         JIEmployeeView employeeView = new JIEmployeeView();
         this.dekstopPane.add(employeeView);
         employeeView.show();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuEmployeeActionPerformed
+
+    private void menuChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangePasswordActionPerformed
+        // TODO add your handling code here:
+        JIChangePassword changePassword = new JIChangePassword();
+        this.dekstopPane.add(changePassword);
+        changePassword.show();
+    }//GEN-LAST:event_menuChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,9 +185,13 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dekstopPane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenu menuEmployee;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JMenu menuAccount;
+    private javax.swing.JMenuItem menuChangePassword;
+    private javax.swing.JMenuItem menuEmployee;
+    private javax.swing.JMenu menuMangement;
     private javax.swing.JMenuItem menuRegion;
     // End of variables declaration//GEN-END:variables
 }

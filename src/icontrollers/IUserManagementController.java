@@ -14,10 +14,18 @@ import models.UserManagement;
  */
 public interface IUserManagementController {
     
-    public List<UserManagement> getId(UserManagement um);
+    public List<UserManagement> getAll();
     
-    public String register(String username, String password);
+    public List<UserManagement> getByUsername(String username);
     
     public String login(String username, String password);
+    
+    public String register(String username, String password, String retypePassword);
+    
+    public String changeUsername(String username, String password);
+    
+    public String changePassword(String username, String password, String newPassword, String retypePassword);
+    
+    public String removeAccount(String username, String password);
     
 }

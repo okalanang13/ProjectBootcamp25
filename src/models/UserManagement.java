@@ -45,6 +45,5 @@ public class UserManagement {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
 }

@@ -12,8 +12,12 @@ package tools;
 //import daos.EmployeeDAO;
 import controllers.EmployeeController;
 import controllers.SessLoginController;
+import controllers.UserManagementController;
+import daos.UserManagementDAO;
 import icontrollers.IEmployeeController;
 import icontrollers.ISessLoginController;
+import icontrollers.IUserManagementController;
+import idaos.IUserManagementDAO;
 //import idaos.IEmployeeDAO;
 //import java.sql.Timestamp;
 import java.text.ParseException;
@@ -22,6 +26,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import models.Employee;
+import models.UserManagement;
 import views.LoginView;
 //import models.Employee;
 import views.MainFrame;
@@ -35,16 +40,38 @@ public class OJDBC {
     /**
      * @param args the command line arguments
      */
-    private static void main (String[] args) {
+    public static void main (String[] args) {
         // TODO code application logic here
         DBConnection connection = new DBConnection();
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        IEmployeeDAO iedao = new EmployeeDAO(connection.getConnection());
 //        IRegionController irc = new RegionController(connection.getConnection());
-        ISessLoginController islc = new SessLoginController(connection.getConnection());
-
-        System.out.println(islc.getById("okalanang13@gmail.com", "admin"));
-        System.out.println(islc.login("okalanang13@gmail.com", "admin"));
+//
+//        System.out.println(islc.getById("okalanang13@gmail.com", "admin"));
+//        System.out.println(islc.login("okalanang13@gmail.com", "admin"));
+        
+//        IUserManagementController iumc = new UserManagementController(connection.getConnection());
+//        System.out.println(iumc.register("okalanang", "admin"));
+//        System.out.println(iumc.register("okalanang", "admssss"));
+//        System.out.println(iumc.login("okalanang", "admin"));
+//        System.out.println(iumc.login("okalanang", "admssss"));
+        
+//        IUserManagementDAO iumdao = new UserManagementDAO(connection.getConnection());
+//        System.out.println((iumdao.getData(new UserManagement("Remi", ""))).get(0).getPassword());
+//        
+//        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         //Check Connection
 //        System.out.println(connection.getConnection());
@@ -61,8 +88,8 @@ public class OJDBC {
 
 //        MainFrame mainFrame = new MainFrame();
 //        mainFrame.setVisible(true);
-//        LoginView view = new LoginView();
-//        view.setVisible(true);
+        LoginView view = new LoginView();
+        view.setVisible(true);
 
         
         //DAO

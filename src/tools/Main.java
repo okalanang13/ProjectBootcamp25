@@ -14,7 +14,7 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class Main {
     
-    public static void main(String[] args){
+    private static void main(String[] args){
           //put your code inside this method
           String password = "okalanang";
           String hashed = BCrypt.hashpw(password, BCrypt.gensalt());

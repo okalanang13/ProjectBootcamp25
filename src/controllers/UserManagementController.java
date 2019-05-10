@@ -48,7 +48,7 @@ public class UserManagementController implements IUserManagementController {
             result = "Username kosong belum terisi.";
         } else {
             if (password.isEmpty()) {
-                result = "Username kosong belum terisi.";
+                result = "Password kosong belum terisi.";
             } else {
                 for (int i = 0; i < lAll.size(); i++) {
                     if (username.equals(lAll.get(i).getUsername())) {
@@ -74,22 +74,22 @@ public class UserManagementController implements IUserManagementController {
         String result = "Username tidak berhasil disimpan";
         boolean existData = false;
         List<UserManagement> lAll = getAll();
-        if(username.isEmpty()){
-            result = "";
+        if (username.isEmpty()) {
+            result = "Username kosong belum terisi.";
         } else {
-            if(password.isEmpty()){
-                result = "";
+            if (password.isEmpty() || retypePassword.isEmpty()) {
+                result = "Password kosong belum terisi.";
             } else {
                 for (int i = 0; i < lAll.size(); i++) {
                     if (username.equals(lAll.get(i).getUsername())) {
                         existData = true;
                     }
                 }
-                
-                if(existData){
+
+                if (existData) {
                     result = "Username  tidak tersedia";
                 } else {
-                    if(password.matches(retypePassword)){
+                    if (password.matches(retypePassword)) {
                         iumdao.save(new UserManagement(username, BCrypt.hashpw(password, BCrypt.gensalt())));
                         result = "true";
                     }
@@ -108,19 +108,28 @@ public class UserManagementController implements IUserManagementController {
     public String changePassword(String username, String password, String newPassword, String retypePassword) {
         String result = "Password tidak berhasil diubah.";
         List<UserManagement> lUser = getByUsername(username);
-        if(BCrypt.checkpw(password, lUser.get(0).getPassword())){
-            if(newPassword.equals(retypePassword)){
-                iumdao.save(new UserManagement(Session.getUsername(), BCrypt.hashpw(newPassword, BCrypt.gensalt())));
-                result = "true";
-            } else {
-                result = "Password baru yang Anda masukkan tidak sama.";
-            }
+        List<UserManagement> lAll = getAll();
+        if (password.isEmpty()) {
+            result = "Password lama kosong belum terisi.";
         } else {
-            result = "Password lama yang Anda masukkan salah.";
+            if (newPassword.isEmpty() || retypePassword.isEmpty()) {
+                result = "Password baru atau Retype password kosong belum terisi";
+            } else {
+                if (BCrypt.checkpw(password, lUser.get(0).getPassword())) {
+                    if (newPassword.equals(retypePassword)) {
+                        iumdao.save(new UserManagement(Session.getUsername(), BCrypt.hashpw(newPassword, BCrypt.gensalt())));
+                        result = "true";
+                    } else {
+                        result = "Password baru yang Anda masukkan tidak sama.";
+                    }
+                } else {
+                    result = "Password lama yang Anda masukkan salah.";
+                }
+            }
         }
         return result;
     }
- 
+
     @Override
     public String removeAccount(String username, String password) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

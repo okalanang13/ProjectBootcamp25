@@ -250,7 +250,7 @@ public final class JIRegionView extends javax.swing.JInternalFrame {
     private void btnDeleteRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteRegionActionPerformed
         // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk melakukan delete?", "Confirm Update", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(confirm==JOptionPane.YES_OPTION){
+        if(confirm == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, irc.delete(txtRegionId.getText()));
             updateTableRegion("");
             resetTextRegion();
